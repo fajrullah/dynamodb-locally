@@ -1,0 +1,6 @@
+/home/development/dev/AAQUA/demo/src/main/java/com/example/service/StudentService.java
+/home/development/dev/AAQUA/demo/src/main/java/com/example/entity/Student.java
+/home/development/dev/AAQUA/demo/src/main/java/com/example/config/DynamoDBConfig.java
+/home/development/dev/AAQUA/demo/src/main/java/com/example/controller/StudentController.java
+/home/development/dev/AAQUA/demo/src/main/java/com/example/DemoApplication.java
+/home/development/dev/AAQUA/demo/src/main/java/com/example/repository/StudentRepository.java
