@@ -38,7 +38,6 @@ public class StudentController {
     }
 
     @PutMapping()
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> updateStudent(@RequestBody Student student) {
         if (student.getId() == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)

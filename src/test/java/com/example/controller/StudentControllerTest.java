@@ -47,6 +47,16 @@ public class StudentControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
     }
+
+    @Test
+    public void shouldReturnBadRequestWhenCreate() throws Exception {
+        mockMvc.perform( post("/api/students")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{" +
+                                "  \"name\": \"John\"," +
+                                "}"))
+                .andExpect(status().isBadRequest());
+    }
     @Test
     public void shouldReturnStatusSuccessWhenDelete() throws Exception{
         mockMvc.perform(delete("/api/students/12234"))
@@ -78,6 +88,5 @@ public class StudentControllerTest {
                 .andExpect(status().is4xxClientError())
                 .andExpect(content().string("Student ID is required"));
     }
-
 
 }
