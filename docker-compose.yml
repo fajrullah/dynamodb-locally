@@ -1,5 +1,12 @@
 version: '3'
 services:
+  dynamodb:
+    image: amazon/dynamodb-local
+    ports:
+      - "8000:8000"
+    volumes:
+      - dynamodb_data:/data
+    command: [ "-jar", "DynamoDBLocal.jar", "-sharedDb" ]
   spring-app:
     image: demo-application:latest
     ports:
@@ -8,14 +15,6 @@ services:
       - SPRING_PROFILES_ACTIVE=local
     depends_on:
       - dynamodb
-
-  dynamodb:
-    image: amazon/dynamodb-local
-    ports:
-      - "8000:8000"
-    volumes:
-      - dynamodb_data:/data
-    command: ["-jar", "DynamoDBLocal.jar", "-sharedDb"]
 
 volumes:
   dynamodb_data:

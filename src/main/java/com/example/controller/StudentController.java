@@ -4,6 +4,7 @@ import com.example.entity.Student;
 import com.example.repository.StudentRepository;
 import com.example.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,8 +12,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
-    @Autowired
-    private StudentRepository studentRepository;
 
     @Autowired
     private StudentService studentService;
@@ -27,6 +26,7 @@ public class StudentController {
         return studentService.findOne(id);
     }
     @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public Student createStudent(@RequestBody Student student){
         return studentService.save(student);
     }
