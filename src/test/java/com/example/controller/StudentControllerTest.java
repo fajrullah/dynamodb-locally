@@ -24,6 +24,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
@@ -42,6 +43,18 @@ public class StudentControllerTest {
         mockMvc.perform(get("/api/students"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void shouldReturnStatusCreated() throws Exception {
+        mockMvc.perform( post("/api/students")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{" +
+                                "  \"name\": \"John\"," +
+                                "  \"classNumber\": \"A002341\"" +
+                                "}"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated());
     }
 
 }

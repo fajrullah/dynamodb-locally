@@ -1,1 +1,2 @@
-/home/development/dev/AAQUA/demo/src/test/java/com/example/controller/StudentControllerTest.java
+/home/development/dev/AAQUA/dynamodb-locally/src/test/java/com/example/controller/StudentControllerTest.java
+/home/development/dev/AAQUA/dynamodb-locally/src/test/java/com/example/service/StudentServiceTest.java

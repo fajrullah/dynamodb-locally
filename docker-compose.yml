@@ -8,11 +8,9 @@ services:
       - dynamodb_data:/data
     command: [ "-jar", "DynamoDBLocal.jar", "-sharedDb" ]
   spring-app:
-    image: demo-application:latest
+    image: demo-application
     ports:
       - "8080:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=local
     depends_on:
       - dynamodb
 
