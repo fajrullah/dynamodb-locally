@@ -4,6 +4,7 @@ package com.example.repository;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBSaveExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.model.AmazonDynamoDBException;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 import com.example.entity.Student;
@@ -35,9 +36,8 @@ public class StudentRepository {
                                 )));
         return id;
     }
-    public String delete(String id){
-        Student student = dynamoDBMapper.load(Student.class, id);
+    public Student delete(Student student){
         dynamoDBMapper.delete(student);
-        return "delete successfully: "+ id;
+        return student;
     }
 }

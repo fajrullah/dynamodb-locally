@@ -1,32 +1,16 @@
 package com.example.controller;
 
-import com.example.entity.Student;
 import com.example.repository.StudentRepository;
-import com.example.service.StudentService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import javax.inject.Inject;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 
 @SpringBootTest
@@ -46,6 +30,13 @@ public class StudentControllerTest {
     }
 
     @Test
+    public void shouldReturnDataOfStudent() throws Exception {
+        mockMvc.perform(get("/api/students/1"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
     public void shouldReturnStatusCreated() throws Exception {
         mockMvc.perform( post("/api/students")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -56,5 +47,37 @@ public class StudentControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
     }
+    @Test
+    public void shouldReturnStatusSuccessWhenDelete() throws Exception{
+        mockMvc.perform(delete("/api/students/12234"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Item not found for id: 12234"));
+    }
+
+    @Test
+    public void shouldReturnStatusSuccessWhenUpdate() throws Exception{
+        mockMvc.perform( put("/api/students")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{" +
+                                "  \"id\": \"1222342\"," +
+                                "  \"name\": \"John\"," +
+                                "  \"classNumber\": \"A002341\"" +
+                                "}"))
+                .andExpect(content().contentType(MediaType.valueOf("text/plain;charset=UTF-8")))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void shouldReturnStatusFailWhenUpdate() throws Exception{
+        mockMvc.perform( put("/api/students")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{" +
+                                "  \"name\": \"John\"," +
+                                "  \"classNumber\": \"A002341\"" +
+                                "}"))
+                .andExpect(status().is4xxClientError())
+                .andExpect(content().string("Student ID is required"));
+    }
+
 
 }

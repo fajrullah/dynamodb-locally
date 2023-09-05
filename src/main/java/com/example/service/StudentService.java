@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.amazonaws.services.dynamodbv2.model.AmazonDynamoDBException;
 import com.example.entity.Student;
 import com.example.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,11 +28,23 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    public String update(String id, Student student){
-        return studentRepository.update(id, student);
+    public String update(Student student){
+        Student result = studentRepository.findOne(student.getId());
+        if (result != null) {
+            return studentRepository.update(student.getId(), student);
+        } else {
+            return student.getId();
+        }
     }
 
+
     public String delete(String id){
-        return studentRepository.delete(id);
+        Student student = studentRepository.findOne(id);
+        if (student != null) {
+            studentRepository.delete(student);
+            return "Delete successfully: " + id;
+        } else {
+            return "Item not found for id: " + id;
+        }
     }
 }
