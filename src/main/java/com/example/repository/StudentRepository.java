@@ -15,8 +15,13 @@ import java.util.List;
 
 @Repository
 public class StudentRepository {
+    private final DynamoDBMapper dynamoDBMapper;
+
     @Autowired
-    private DynamoDBMapper dynamoDBMapper;
+    public StudentRepository(DynamoDBMapper dynamoDBMapper) {
+        this.dynamoDBMapper = dynamoDBMapper;
+    }
+
     public List<Student> findAll(){
         return dynamoDBMapper.scan(Student.class, new DynamoDBScanExpression());
     }

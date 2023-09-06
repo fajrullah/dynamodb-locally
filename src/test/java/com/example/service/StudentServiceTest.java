@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.example.builder.StudentBuilder;
 import com.example.entity.Student;
 import com.example.repository.StudentRepository;
@@ -50,6 +51,7 @@ public class StudentServiceTest {
         Student existStudent = studentService.findOne(student.getId());
         assertEquals(MOCKCLASSNUMBER, student.getClassNumber());
     }
+
 }
 
 

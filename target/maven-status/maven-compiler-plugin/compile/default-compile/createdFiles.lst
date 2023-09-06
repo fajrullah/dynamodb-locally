@@ -1,0 +1,7 @@
+com/example/repository/StudentRepository.class
+com/example/builder/StudentBuilder.class
+com/example/entity/Student.class
+com/example/DemoApplication.class
+com/example/controller/StudentController.class
+com/example/service/StudentService.class
+com/example/config/DynamoDBConfig.class
