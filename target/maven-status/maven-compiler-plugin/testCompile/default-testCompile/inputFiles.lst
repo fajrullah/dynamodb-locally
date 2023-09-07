@@ -1,3 +1,6 @@
-/home/development/dev/AAQUA/dynamodb-locally/src/test/java/com/example/controller/CucumberIntegrationTest.java
+/home/development/dev/AAQUA/dynamodb-locally/src/test/java/com/example/repository/StudentRepositoryTest.java
+/home/development/dev/AAQUA/dynamodb-locally/src/test/java/com/example/CucumberTestRunner.java
 /home/development/dev/AAQUA/dynamodb-locally/src/test/java/com/example/controller/StudentControllerTest.java
+/home/development/dev/AAQUA/dynamodb-locally/src/test/java/com/example/cucumberglue/StudentSteps.java
+/home/development/dev/AAQUA/dynamodb-locally/src/test/java/com/example/cucumberglue/StudentControllerSteps.java
 /home/development/dev/AAQUA/dynamodb-locally/src/test/java/com/example/service/StudentServiceTest.java

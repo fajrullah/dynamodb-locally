@@ -1,3 +1,7 @@
-com/example/controller/CucumberIntegrationTest.class
+com/example/CucumberTestRunner.class
 com/example/controller/StudentControllerTest.class
 com/example/service/StudentServiceTest.class
+com/example/cucumberglue/StudentControllerSteps$RunCucumberTest.class
+com/example/cucumberglue/StudentSteps.class
+com/example/repository/StudentRepositoryTest.class
+com/example/cucumberglue/StudentControllerSteps.class

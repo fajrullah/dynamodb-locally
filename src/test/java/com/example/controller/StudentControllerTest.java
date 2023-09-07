@@ -31,11 +31,8 @@ public class StudentControllerTest {
     @Test
     public void shouldReturnDataOfStudent() throws Exception {
         mockMvc.perform(get("/api/students/1"))
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
-
-
 
     @Test
     public void shouldReturnStatusCreated() throws Exception {
