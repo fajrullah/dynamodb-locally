@@ -48,7 +48,7 @@ public class SecurityConfiguration {
                 .httpBasic(withDefaults())
                 .authorizeExchange(exchanges -> {
                     exchanges
-                            .pathMatchers("/api/*")
+                            .pathMatchers("/api/**")
                             .access(opaAuthManager(opaWebClient));
                 })
                 .build();
