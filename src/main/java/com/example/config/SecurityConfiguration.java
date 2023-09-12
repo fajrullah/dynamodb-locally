@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.reactivestreams.Publisher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +20,9 @@ import org.springframework.security.config.annotation.web.reactive.EnableWebFlux
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.authorization.AuthorizationContext;
 import org.springframework.web.reactive.function.BodyInserter;
@@ -31,22 +35,23 @@ import com.google.common.collect.ImmutableMap;
 
 import reactor.core.publisher.Mono;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 public class SecurityConfiguration {
-
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
     public SecurityWebFilterChain accountAuthorization(ServerHttpSecurity http, @Qualifier("opaWebClient")WebClient opaWebClient) {
-
-        // @formatter:on
         return http
-                .httpBasic()
-                .and()
+                .httpBasic(withDefaults())
                 .authorizeExchange(exchanges -> {
                     exchanges
-                            .pathMatchers("/account/*")
+                            .pathMatchers("/api/*")
                             .access(opaAuthManager(opaWebClient));
                 })
                 .build();
-        // @formatter:on
 
     }
 
@@ -77,7 +82,6 @@ public class SecurityConfiguration {
     }
 
     private Publisher<Map<String,Object>> toAuthorizationPayload(Mono<Authentication> auth, AuthorizationContext context) {
-        // @formatter:off
         return auth
                 .defaultIfEmpty(new AnonymousAuthenticationToken("**ANONYMOUS**", new Object(), Arrays.asList(new SimpleGrantedAuthority("ANONYMOUS"))))
                 .map( a -> {
@@ -103,6 +107,5 @@ public class SecurityConfiguration {
 
                     return input;
                 });
-        // @formatter:on
     }
 }

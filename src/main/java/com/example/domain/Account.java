@@ -24,5 +24,17 @@ public class Account {
         return acc;
     }
 
+    private void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    private void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
+    private void setId(String id) {
+        this.id = id;
+    }
+
 
 }

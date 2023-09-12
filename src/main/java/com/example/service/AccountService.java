@@ -2,11 +2,13 @@ package com.example.service;
 
 import com.example.domain.Account;
 import com.google.common.collect.ImmutableMap;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
 import java.util.Map;
 
+@Service
 public class AccountService {
     private Map<String, Account> accounts = ImmutableMap.<String, Account>builder()
             .put("0001", Account.of("0001", BigDecimal.valueOf(100.00), "USD"))
