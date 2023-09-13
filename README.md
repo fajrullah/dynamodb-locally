@@ -1,4 +1,8 @@
-# dynamodb-locally
+# ASSIGNMENT TEST
+
+- AWS Dynamodb
+- GRAPHQL (DGS) NETFLIX
+- CUCUMBER
 
 ````
 query StudentsQuery {
@@ -17,3 +21,4 @@ query StudentQuery {
     }
 }
 ````
+
