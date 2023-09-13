@@ -1,0 +1,20 @@
+type Query {
+    students: [Student]
+    student(id: String!): Student
+}
+
+type Mutation {
+    student(studentInput: StudentInput): Student
+}
+
+type Student {
+    id: String!
+    name: String!
+    classNumber: String!
+}
+
+input StudentInput {
+     id: String!
+     name: String!
+     classNumber: String!
+}
