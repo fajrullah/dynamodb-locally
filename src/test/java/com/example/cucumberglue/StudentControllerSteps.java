@@ -6,7 +6,6 @@ import io.cucumber.java.en.When;
 import io.cucumber.spring.CucumberContextConfiguration;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -18,9 +17,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class StudentControllerSteps {
     public class RunCucumberTest {
     }
-
-    @LocalServerPort
-    String port;
+    String port = "8080";
     ResponseEntity<String> response;
 
     Student student;

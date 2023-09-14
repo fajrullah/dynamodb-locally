@@ -5,6 +5,7 @@ type Query {
 
 type Mutation {
     student(studentInput: StudentInput): Student
+    deleteStudent(id: String!): String
 }
 
 type Student {
