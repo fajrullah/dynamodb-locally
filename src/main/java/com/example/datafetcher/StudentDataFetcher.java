@@ -41,22 +41,4 @@ public class StudentDataFetcher {
             return null;
         }
     }
-
-
-
-
-
-//    @DgsMutation
-//    public Customer customer(CustomerInput customerInput) {
-//        Customer customer = Customer.builder()
-//                .contact(customerInput.getContact())
-//                .name(customerInput.getName())
-//                .gender(customerInput.getGender())
-//                .mail(customerInput.getMail())
-//                .accounts(mapCustomerAccounts(customerInput.getAccounts()))
-//                .build();
-//        Customer customerResponse = customerRepository.save(customer);
-//        return customerResponse;
-//    }
-
 }

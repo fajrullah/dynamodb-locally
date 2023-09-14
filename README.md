@@ -13,26 +13,25 @@ query studentsQuery{
     classNumber
   }
 }
-
 query studentQuery{
- student(id: "e1771576-d152-4afb-b665-3f17bf5edd96") {
+ student(id: "someid") {
         id
         name
         classNumber
     }
 }
-
 mutation createStudent{
   student(studentInput: {
     name: "Jhone Graph"
     classNumber: "A99234"
+    classIds: ["1"]
   }){
     id
     name
     classNumber
+    classIds
   }
 }
-
 mutation updateStudent{
   student(studentInput: {
     id: "someID"
@@ -46,7 +45,31 @@ mutation updateStudent{
 }
 
 mutation deleteStudent {
- deleteStudent(id: "c03f8043-d3fa-4084-b848-2f4076f5b4aa")
+ deleteStudent(id: "someid")
+}
+````
+````
+query classesQuery{
+  classes{
+    id
+    className
+  }
+}
+query classQuery{
+  classes(id: "someid"){
+    id
+    className
+  }
+}
+mutation createClass{
+  class(classInput: {
+    className: "Math"
+    studentIds: ["1"]
+  }){
+    id
+    className
+    studentIds
+  }
 }
 ````
 

@@ -11,8 +11,8 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
-public class StudentInput {
-    private String classNumber;
-    private String name;
-    private Set<String> classIds = new HashSet<>();
+public class ClassInput {
+    private String className;
+
+    private Set<String> studentIds = new HashSet<>();
 }

@@ -1,4 +1,5 @@
 type Query {
+    classes: [Class]
     students: [Student]
     student(id: String!): Student
 }
@@ -6,16 +7,33 @@ type Query {
 type Mutation {
     student(studentInput: StudentInput): Student
     deleteStudent(id: String!): String
+    class(classInput: ClassInput): Class
 }
 
 type Student {
     id: String!
     name: String!
     classNumber: String!
+    classIds: [String]
+}
+
+type Class {
+    id: String!
+    className: String!
+    studentIds: [String]
 }
 
 input StudentInput {
      id: String
      name: String!
      classNumber: String!
+     classIds: [String]
 }
+
+input ClassInput {
+     id: String
+     className: String!
+     studentIds: [String]
+}
+
+
