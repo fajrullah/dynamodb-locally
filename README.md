@@ -1,8 +1,9 @@
-# ASSIGNMENT TEST
+# ASSIGNMENT
 
 - AWS Dynamodb
 - GRAPHQL (DGS) NETFLIX
 - CUCUMBER
+- OPA (Open Policy Agent)
 
 ````
 query StudentsQuery {
@@ -19,6 +20,17 @@ query StudentQuery {
         name
         classNumber
     }
+}
+
+mutation StudentMutation{
+  student(studentInput: {
+    name: "Jhone Graph"
+    classNumber: "A99234"
+  }){
+    id
+    name
+    classNumber
+  }
 }
 ````
 

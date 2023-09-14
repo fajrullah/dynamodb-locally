@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.amazonaws.services.dynamodbv2.model.AmazonDynamoDBException;
 import com.example.entity.Student;
+import com.example.model.StudentInput;
 import com.example.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,4 +48,5 @@ public class StudentService {
             return "Item not found for id: " + id;
         }
     }
+
 }

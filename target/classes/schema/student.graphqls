@@ -14,7 +14,7 @@ type Student {
 }
 
 input StudentInput {
-     id: String!
+     id: String
      name: String!
      classNumber: String!
 }
