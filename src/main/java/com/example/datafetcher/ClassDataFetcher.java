@@ -2,6 +2,7 @@ package com.example.datafetcher;
 
 import com.example.entity.Class;
 import com.example.entity.Student;
+import com.example.model.ClassInput;
 import com.example.repository.ClassRepository;
 import com.example.repository.StudentRepository;
 import com.example.service.ClassService;
@@ -34,10 +35,15 @@ public class ClassDataFetcher {
         return classService.getAllClassesWithStudents();
     }
 
+//    @DgsData(parentType = "Mutation", field = "class")
+//    public ClassInput saveClass(@InputArgument("classInput") ClassInput studentClass) {
+//        classService.save(studentClass);
+//        return studentClass;
+//    }
+
     @DgsData(parentType = "Mutation", field = "class")
-    public Class updateOrSave(@InputArgument("classInput") Class studentClass) {
-        classService.save(studentClass);
-        return studentClass;
+    public Class save(@InputArgument("classInput") Class studentClass) {
+        return classService.save(studentClass);
     }
 
     @DgsData(parentType = "Mutation", field = "deleteClass")

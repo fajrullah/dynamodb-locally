@@ -15,4 +15,9 @@ public class ClassInput {
     private String className;
 
     private Set<String> studentIds = new HashSet<>();
+
+    public String getClassName() {
+        return className;
+    }
+
 }

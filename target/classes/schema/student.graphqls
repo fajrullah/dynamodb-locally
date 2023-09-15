@@ -13,7 +13,6 @@ type Mutation {
     deleteStudent(id: String!): String
     class(classInput: ClassInput): Class
     deleteClass(id: String!): String
-    studentRegisterClass(registerInput: RegisterInput): Student
 }
 
 type Student {
@@ -46,5 +45,4 @@ input ClassInput {
 
 input RegisterInput {
     studentId: String!
-    classId: String!
 }

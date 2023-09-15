@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.entity.Class;
 import com.example.entity.Student;
+import com.example.model.ClassInput;
 import com.example.repository.ClassRepository;
 import com.example.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
