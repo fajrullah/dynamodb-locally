@@ -29,6 +29,11 @@ public class ClassDataFetcher {
         return classService.findOne(id);
     }
 
+    @DgsData(parentType = "Query", field = "allClassesWithStudents")
+    public List<Class> getAllClassesWithStudents() {
+        return classService.getAllClassesWithStudents();
+    }
+
     @DgsData(parentType = "Mutation", field = "class")
     public Class updateOrSave(@InputArgument("classInput") Class studentClass) {
         classService.save(studentClass);
