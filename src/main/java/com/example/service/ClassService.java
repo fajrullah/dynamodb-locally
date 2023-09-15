@@ -8,7 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +19,8 @@ public class ClassService {
     @Autowired
     private ClassRepository classRepository;
 
+    @Autowired
+    private StudentRepository studentRepository;
     public List<Class> findAll() {
         return classRepository.findAll();
     }
@@ -37,6 +41,23 @@ public class ClassService {
         } else {
             return "Item not found for id: " + id;
         }
+    }
+    public List<Class> getAllClassesWithStudents() {
+        List<Class> classes = classRepository.findAll();
+
+        for (Class classEntity : classes) {
+            Set<String> studentIds = classEntity.getStudentIds();
+            List<Student> students = new ArrayList<>();
+            for(String studentId : studentIds) {
+                Student studentEntity = studentRepository.findOne(studentId);
+                if(studentEntity != null){
+                    students.add(studentEntity);
+                }
+            }
+            classEntity.setStudents(students);
+        }
+
+        return classes;
     }
 
 }

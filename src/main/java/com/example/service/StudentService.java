@@ -50,7 +50,6 @@ public class StudentService {
         }
     }
 
-
     public String delete(String id){
         Student student = studentRepository.findOne(id);
         if (student != null) {

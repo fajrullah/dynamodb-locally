@@ -4,6 +4,8 @@ type Query {
     student(id: String!): Student
     class(id: String!): Class
     allStudentsWithClasses: [Student]
+    allClassesWithStudents: [Class]
+
 }
 
 type Mutation {
@@ -25,6 +27,7 @@ type Class {
     id: String!
     className: String!
     studentIds: [String]
+    students: [Student]
 }
 
 input StudentInput {
