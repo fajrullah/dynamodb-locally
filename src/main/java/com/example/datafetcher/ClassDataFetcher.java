@@ -30,7 +30,7 @@ public class ClassDataFetcher {
     }
 
     @DgsData(parentType = "Query", field = "allClassesWithStudents")
-    public List<Class> getAllClassesWithStudents() {
+    public List<Class> getAllStudentsWithClasses() {
         return classService.getAllClassesWithStudents();
     }
 
