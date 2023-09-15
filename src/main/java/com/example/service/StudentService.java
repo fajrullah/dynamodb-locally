@@ -1,21 +1,33 @@
 package com.example.service;
 
 import com.amazonaws.services.dynamodbv2.model.AmazonDynamoDBException;
+import com.example.entity.Class;
 import com.example.entity.Student;
 import com.example.model.StudentInput;
+import com.example.repository.ClassRepository;
 import com.example.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private ClassRepository classRepository;
 
     public List<Student> findAll() {
         return studentRepository.findAll();
@@ -47,6 +59,24 @@ public class StudentService {
         } else {
             return "Item not found for id: " + id;
         }
+    }
+
+    public List<Student> getAllStudentsWithClasses() {
+        List<Student> students = studentRepository.findAll();
+        for (Student student : students) {
+            Set<String> classIds = student.getClassIds();
+            List<Class> classes = new ArrayList<>();
+
+            for (String classId : classIds) {
+                Class classEntity = classRepository.findOne(classId);
+                 if (classEntity != null) {
+                    classes.add(classEntity);
+                }
+            }
+            student.setClasses(classes);
+        }
+
+        return students;
     }
 
 }

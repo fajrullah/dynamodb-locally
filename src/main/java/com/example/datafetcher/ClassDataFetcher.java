@@ -4,6 +4,7 @@ import com.example.entity.Class;
 import com.example.entity.Student;
 import com.example.repository.ClassRepository;
 import com.example.repository.StudentRepository;
+import com.example.service.ClassService;
 import com.example.service.StudentService;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsData;
@@ -16,17 +17,33 @@ import java.util.List;
 public class ClassDataFetcher {
 
     @Autowired
-    ClassRepository classRepository;
+    ClassService classService;
 
-    @DgsData(parentType = "Query", field = "students")
+    @DgsData(parentType = "Query", field = "classes")
     public List<Class> findAll() {
-        return classRepository.findAll();
+        return classService.findAll();
+    }
+
+    @DgsData(parentType = "Query", field = "class")
+    public Class findOneStudent(@InputArgument("id") String id) {
+        return classService.findOne(id);
     }
 
     @DgsData(parentType = "Mutation", field = "class")
     public Class updateOrSave(@InputArgument("classInput") Class studentClass) {
-        classRepository.save(studentClass);
+        classService.save(studentClass);
         return studentClass;
     }
+
+    @DgsData(parentType = "Mutation", field = "deleteClass")
+    public String deleteClass(@InputArgument("id") String id) {
+        try{
+            classService.delete(id);
+            return id;
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
 
 }

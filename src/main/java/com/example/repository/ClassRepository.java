@@ -24,8 +24,16 @@ public class ClassRepository {
     public List<Class> findAll(){
         return dynamoDBMapper.scan(Class.class, new DynamoDBScanExpression());
     }
+
+    public Class findOne(String id){ return dynamoDBMapper.load(Class.class, id);}
+
     public Class save(Class classStudent){
         dynamoDBMapper.save(classStudent);
+        return classStudent;
+    }
+
+    public Class delete(Class classStudent){
+        dynamoDBMapper.delete(classStudent);
         return classStudent;
     }
 

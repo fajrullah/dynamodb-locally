@@ -43,4 +43,5 @@ public class Class {
     public void setStudentIds(Set<String> studentIds) {
         this.studentIds = studentIds;
     }
+
 }

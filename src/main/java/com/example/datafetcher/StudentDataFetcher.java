@@ -21,6 +21,11 @@ public class StudentDataFetcher {
         return studentService.findAll();
     }
 
+    @DgsData(parentType = "Query", field = "allStudentsWithClasses")
+    public List<Student> getAllStudentsWithClasses() {
+        return studentService.getAllStudentsWithClasses();
+    }
+
     @DgsData(parentType = "Query", field = "student")
     public Student findOneStudent(@InputArgument("id") String id) {
         return studentService.findOne(id);
@@ -41,4 +46,5 @@ public class StudentDataFetcher {
             return null;
         }
     }
+
 }

@@ -6,11 +6,14 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBSaveExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
+import com.example.entity.Class;
 import com.example.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public class StudentRepository {
@@ -20,6 +23,8 @@ public class StudentRepository {
     public StudentRepository(DynamoDBMapper dynamoDBMapper) {
         this.dynamoDBMapper = dynamoDBMapper;
     }
+
+    private Class findOneClass(String id){ return dynamoDBMapper.load(Class.class, id);}
 
     public List<Student> findAll(){
         return dynamoDBMapper.scan(Student.class, new DynamoDBScanExpression());
