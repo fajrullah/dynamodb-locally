@@ -1,7 +1,6 @@
 package com.example.service;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.example.builder.StudentBuilder;
 import com.example.entity.Student;
 import com.example.repository.StudentRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,6 +31,7 @@ public class StudentServiceTest {
         student.setId(MOCKID);
         student.setName(MOCKNAME);
         student.setClassNumber(MOCKCLASSNUMBER);
+        student.setClassIds(null);
         studentService.save(student);
     }
     @Test

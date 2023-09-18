@@ -31,6 +31,7 @@ public class StudentRepositoryTest {
     void testSaveStudent() {
         Student student = new Student();
         student.setId("1");
+        student.setClassIds(null);
 
         when(studentRepository.save(student)).thenReturn(student);
 

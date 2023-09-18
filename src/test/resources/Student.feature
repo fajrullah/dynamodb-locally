@@ -8,7 +8,8 @@ Feature: Testing Student CRUD Management
     """
       {
         "name": "John",
-        "classNumber": "A100234"
+        "classNumber": "A100234",
+         "classIds": null
       }
      """
     Then response status code is 201

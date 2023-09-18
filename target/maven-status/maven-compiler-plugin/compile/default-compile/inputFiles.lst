@@ -1,7 +1,14 @@
+/home/development/dev/AAQUA/dynamodb-locally/src/main/java/com/example/model/ClassInput.java
+/home/development/dev/AAQUA/dynamodb-locally/src/main/java/com/example/service/ClassService.java
+/home/development/dev/AAQUA/dynamodb-locally/src/main/java/com/example/repository/ClassRepository.java
+/home/development/dev/AAQUA/dynamodb-locally/src/main/java/com/example/model/StudentInput.java
+/home/development/dev/AAQUA/dynamodb-locally/src/main/java/com/example/datafetcher/ClassDataFetcher.java
 /home/development/dev/AAQUA/dynamodb-locally/src/main/java/com/example/controller/StudentController.java
-/home/development/dev/AAQUA/dynamodb-locally/src/main/java/com/example/builder/StudentBuilder.java
 /home/development/dev/AAQUA/dynamodb-locally/src/main/java/com/example/repository/StudentRepository.java
+/home/development/dev/AAQUA/dynamodb-locally/src/main/java/com/example/datafetcher/StudentDataFetcher.java
 /home/development/dev/AAQUA/dynamodb-locally/src/main/java/com/example/DemoApplication.java
+/home/development/dev/AAQUA/dynamodb-locally/src/main/java/com/example/model/RegisterInput.java
 /home/development/dev/AAQUA/dynamodb-locally/src/main/java/com/example/entity/Student.java
 /home/development/dev/AAQUA/dynamodb-locally/src/main/java/com/example/config/DynamoDBConfig.java
+/home/development/dev/AAQUA/dynamodb-locally/src/main/java/com/example/entity/Class.java
 /home/development/dev/AAQUA/dynamodb-locally/src/main/java/com/example/service/StudentService.java
