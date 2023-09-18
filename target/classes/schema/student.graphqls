@@ -5,6 +5,8 @@ type Query {
     class(id: String!): Class
     allStudentsWithClasses: [Student]
     allClassesWithStudents: [Class]
+    score(id: String!): Score
+    scores: [Score]
 }
 
 type Mutation {
@@ -15,6 +17,13 @@ type Mutation {
     createClass(classInput: ClassInput): Class
     deleteClass(id: String!): String
     studentRegisterClass(registerInput: RegisterInput): Student
+}
+
+type Score {
+    id: String!
+    value: Float!
+    classId: String!
+    studentId: String!
 }
 
 type Student {
@@ -47,5 +56,11 @@ input ClassInput {
 
 input RegisterInput {
     studentId: String!
+    classId: String!
+}
+
+input ScoreInput {
+    studentId: String!
+    value: Float!
     classId: String!
 }
