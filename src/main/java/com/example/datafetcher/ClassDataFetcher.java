@@ -35,15 +35,13 @@ public class ClassDataFetcher {
         return classService.getAllClassesWithStudents();
     }
 
-//    @DgsData(parentType = "Mutation", field = "class")
-//    public ClassInput saveClass(@InputArgument("classInput") ClassInput studentClass) {
-//        classService.save(studentClass);
-//        return studentClass;
-//    }
-
-    @DgsData(parentType = "Mutation", field = "class")
-    public Class save(@InputArgument("classInput") Class studentClass) {
-        return classService.save(studentClass);
+    @DgsData(parentType = "Mutation", field = "updateClass")
+    public Class update(@InputArgument("classInput") ClassInput studentClass) {
+        return classService.saveClass(studentClass);
+    }
+    @DgsData(parentType = "Mutation", field = "createClass")
+    public Class save(@InputArgument("classInput") ClassInput studentClass) {
+        return classService.saveClass(studentClass);
     }
 
     @DgsData(parentType = "Mutation", field = "deleteClass")
@@ -55,6 +53,4 @@ public class ClassDataFetcher {
             return null;
         }
     }
-
-
 }

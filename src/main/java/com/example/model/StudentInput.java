@@ -15,4 +15,16 @@ public class StudentInput {
     private String classNumber;
     private String name;
     private Set<String> classIds = new HashSet<>();
+
+    public String getClassNumber() {
+        return classNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setClassIds(Set<String> classIds) {
+        this.classIds = classIds;
+    }
 }

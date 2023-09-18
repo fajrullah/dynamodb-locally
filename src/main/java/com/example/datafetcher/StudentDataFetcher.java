@@ -2,7 +2,9 @@ package com.example.datafetcher;
 
 import com.example.entity.Class;
 import com.example.entity.Student;
+import com.example.model.ClassInput;
 import com.example.model.RegisterInput;
+import com.example.model.StudentInput;
 import com.example.repository.ClassRepository;
 import com.example.repository.StudentRepository;
 import com.example.service.ClassService;
@@ -41,6 +43,11 @@ public class StudentDataFetcher {
         return student;
     }
 
+    @DgsData(parentType = "Mutation", field = "createStudent")
+    public Student save(@InputArgument("studentInput") StudentInput studentInput) {
+        return studentService.saveStudent(studentInput);
+    }
+
     @DgsData(parentType = "Mutation", field = "deleteStudent")
     public String deleteStudent(@InputArgument("id") String id) {
         try{
@@ -72,8 +79,7 @@ public class StudentDataFetcher {
 
         student.getClassIds().add(classId);
         studentService.save(student);
-        return student;
+        return studentService.getStudentWithClasses(studentId);
     }
-
 
 }

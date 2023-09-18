@@ -41,6 +41,10 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
+    public Student saveStudent(StudentInput student) {
+        return studentRepository.saveStudent(student);
+    }
+
     public String update(Student student){
         Student result = studentRepository.findOne(student.getId());
         if (result != null) {
@@ -76,6 +80,22 @@ public class StudentService {
         }
 
         return students;
+    }
+
+    public Student getStudentWithClasses(String id) {
+        Student student = studentRepository.findOne(id);
+        Set<String> classIds = student.getClassIds();
+        List<Class> classes = new ArrayList<>();
+
+        for (String classId : classIds) {
+            Class classEntity = classRepository.findOne(classId);
+            if (classEntity != null) {
+                classes.add(classEntity);
+            }
+        }
+        student.setClasses(classes);
+
+        return student;
     }
 
 }

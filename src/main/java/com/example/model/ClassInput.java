@@ -20,4 +20,8 @@ public class ClassInput {
         return className;
     }
 
+    public Set<String> getStudentIds() {
+        return studentIds;
+    }
+
 }

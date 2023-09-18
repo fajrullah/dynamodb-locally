@@ -12,7 +12,9 @@ import com.example.model.ClassInput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public class ClassRepository {
@@ -27,6 +29,14 @@ public class ClassRepository {
     }
 
     public Class findOne(String id){ return dynamoDBMapper.load(Class.class, id);}
+
+    public Class saveClass(ClassInput classStudent){
+        Class classEntity = new Class();
+        classEntity.setStudentIds(null);
+        classEntity.setClassName(classStudent.getClassName());
+        dynamoDBMapper.save(classEntity);
+        return classEntity;
+    }
 
     public Class save(Class classStudent){
         dynamoDBMapper.save(classStudent);

@@ -8,6 +8,7 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 import com.example.entity.Class;
 import com.example.entity.Student;
+import com.example.model.StudentInput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -34,6 +35,15 @@ public class StudentRepository {
     public Student save(Student student){
         dynamoDBMapper.save(student);
         return student;
+    }
+
+    public Student saveStudent(StudentInput student){
+        Student studentEntity = new Student();
+        studentEntity.setClassIds(null);
+        studentEntity.setName(student.getName());
+        studentEntity.setClassNumber(student.getClassNumber());
+        dynamoDBMapper.save(studentEntity);
+        return studentEntity;
     }
 
     public String update(String id, Student student) {

@@ -30,8 +30,20 @@ public class ClassService {
         return classRepository.findOne(id);
     }
 
+    public Class saveClass(ClassInput studentClass) {
+        return classRepository.saveClass(studentClass);
+    }
+
     public Class save(Class studentClass) {
         return classRepository.save(studentClass);
+    }
+
+    public Class update(Class studentClass) {
+        return classRepository.save(studentClass);
+    }
+
+    public Class updateClass(ClassInput studentClass) {
+        return classRepository.saveClass(studentClass);
     }
 
     public String delete(String id){
