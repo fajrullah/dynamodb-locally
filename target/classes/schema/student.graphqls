@@ -17,6 +17,7 @@ type Mutation {
     createClass(classInput: ClassInput): Class
     deleteClass(id: String!): String
     studentRegisterClass(registerInput: RegisterInput): Student
+    addStudentScore(scoreInput: ScoreInput): Score
 }
 
 type Score {

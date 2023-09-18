@@ -7,6 +7,7 @@ import com.amazonaws.services.dynamodbv2.xspec.L;
 import com.example.entity.Class;
 import com.example.entity.Score;
 import com.example.model.ClassInput;
+import com.example.model.ScoreInput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -27,6 +28,11 @@ public class ScoreRepository {
 
     public Score findOne(String id){
         return dynamoDBMapper.load(Score.class, id);
+    }
+
+    public Score insertStudentScore(Score score){
+        dynamoDBMapper.save(score);
+        return score;
     }
 
 //    public Score saveClass(ClassInput classStudent){
