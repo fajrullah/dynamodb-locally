@@ -1,0 +1,51 @@
+type Query {
+    classes: [Class]
+    students: [Student]
+    student(id: String!): Student
+    class(id: String!): Class
+    allStudentsWithClasses: [Student]
+    allClassesWithStudents: [Class]
+}
+
+type Mutation {
+    updateStudent(studentInput: StudentInput): Student
+    createStudent(studentInput: StudentInput): Student
+    deleteStudent(id: String!): String
+    class(classInput: ClassInput): Class
+    createClass(classInput: ClassInput): Class
+    deleteClass(id: String!): String
+    studentRegisterClass(registerInput: RegisterInput): Student
+}
+
+type Student {
+    id: String!
+    name: String!
+    classNumber: String!
+    classIds: [String]
+    classes: [Class]
+}
+
+type Class {
+    id: String!
+    className: String!
+    studentIds: [String]
+    students: [Student]
+}
+
+input StudentInput {
+     id: String
+     name: String!
+     classNumber: String!
+     classIds: [String]
+}
+
+input ClassInput {
+     id: String
+     className: String!
+     studentIds: [String]
+}
+
+input RegisterInput {
+    studentId: String!
+    classId: String!
+}
