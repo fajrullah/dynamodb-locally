@@ -40,7 +40,8 @@ public class StudentControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{" +
                                 "  \"name\": \"John\"," +
-                                "  \"classNumber\": \"A002341\"" +
+                                "  \"classNumber\": \"A002341\"," +
+                                "  \"classIds\": null" +
                                 "}"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
@@ -69,7 +70,8 @@ public class StudentControllerTest {
                         .content("{" +
                                 "  \"id\": \"1222342\"," +
                                 "  \"name\": \"John\"," +
-                                "  \"classNumber\": \"A002341\"" +
+                                "  \"classNumber\": \"A002341\"," +
+                                "  \"classIds\": null" +
                                 "}"))
                 .andExpect(content().contentType(MediaType.valueOf("text/plain;charset=UTF-8")))
                 .andExpect(status().isOk());
