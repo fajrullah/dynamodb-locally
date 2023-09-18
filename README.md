@@ -49,6 +49,40 @@ mutation deleteStudent {
 }
 ````
 ````
+mutation studentRegisterClass{
+  studentRegisterClass(registerInput: {
+    classId: "fc3e674d-ea63-4817-a67a-bde27f21fd4e"
+    studentId: "67ba8839-978e-445a-9c0e-430db0896921"
+  }){
+    id
+    name
+    classes{
+      className
+    }
+  }
+}
+query allClassesWithStudent{
+  allClassesWithStudents{
+    id
+    className
+   	students{
+      id
+      name
+    }
+  }
+}
+query allStudentsWithClass{
+  allStudentsWithClasses{
+    id
+    name
+    classes{
+      id
+      className
+    }
+  }
+}
+````
+````
 query classesQuery{
   classes{
     id
