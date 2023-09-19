@@ -24,7 +24,6 @@ public class StudentControllerSteps {
 
     private HttpHeaders headers;
 
-
     @When("I call endpoint {string}")
     public void whenClientCalls(String url) {
         try {
