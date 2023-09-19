@@ -117,7 +117,7 @@ query getScores{
 }
 
 query getScore{
-  score(id: "dadada"){
+   score(id: "3bcd6fb6-acd4-4542-85fc-227146c93382"){
     id
     value
     classId

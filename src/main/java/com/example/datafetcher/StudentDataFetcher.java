@@ -1,6 +1,7 @@
 package com.example.datafetcher;
 
 import com.example.entity.Class;
+import com.example.entity.Score;
 import com.example.entity.Student;
 import com.example.model.ClassInput;
 import com.example.model.RegisterInput;
@@ -80,6 +81,12 @@ public class StudentDataFetcher {
         student.getClassIds().add(classId);
         studentService.save(student);
         return studentService.getStudentWithClasses(studentId);
+    }
+
+
+    @DgsData(parentType = "Query", field = "stundentScores")
+    public Student getStudentScores(String id){
+        return studentService.getStudentScores(id);
     }
 
 }

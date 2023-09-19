@@ -2,9 +2,12 @@ package com.example.service;
 
 import com.amazonaws.services.dynamodbv2.model.AmazonDynamoDBException;
 import com.example.entity.Class;
+import com.example.entity.Score;
 import com.example.entity.Student;
+import com.example.entity.StudentScore;
 import com.example.model.StudentInput;
 import com.example.repository.ClassRepository;
+import com.example.repository.ScoreRepository;
 import com.example.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +31,9 @@ public class StudentService {
 
     @Autowired
     private ClassRepository classRepository;
+
+    @Autowired
+    private ScoreRepository scoreRepository;
 
     public List<Student> findAll() {
         return studentRepository.findAll();
@@ -95,6 +101,25 @@ public class StudentService {
         }
         student.setClasses(classes);
 
+        return student;
+    }
+
+    public Student getStudentScores(String id) {
+        Student student = studentRepository.findOne(id);
+        Set<String> classIds = student.getClassIds();
+        List<StudentScore> scores = new ArrayList<>();
+
+        for (String classId : classIds) {
+            Class classEntity = classRepository.findOne(classId);
+            Score scoreEntity = scoreRepository.findOneStudentScore(id, classId);
+            if (classEntity != null && scoreEntity != null) {
+                StudentScore score = new StudentScore();
+                score.setValue(scoreEntity.getValue());
+                score.setClassName(classEntity.getClassName());
+                scores.add(score);
+            }
+        }
+        student.setScores(scores);
         return student;
     }
 

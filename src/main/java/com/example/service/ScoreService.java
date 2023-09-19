@@ -32,6 +32,7 @@ public class ScoreService {
         return scoreRepository.findOne(id);
     }
 
+
     public Score insertStudentScore(ScoreInput scoreInput){
         Score score = new Score();
         Double value = scoreInput.getValue();
