@@ -106,4 +106,35 @@ mutation createClass{
   }
 }
 ````
+````
+query getScores{
+  scores{
+    id
+    value
+    classId
+    studentId
+  }
+}
 
+query getScore{
+   score(id: "3bcd6fb6-acd4-4542-85fc-227146c93382"){
+    id
+    value
+    classId
+    studentId
+  }
+}
+
+mutation addStudentScore{
+  addStudentScore(scoreInput:{
+    studentId: "dd39957d-253f-46f5-b68b-94eb92e14aa5"
+    value: 10.0
+    classId: "1e07b196-9abc-4d45-ac89-13380b1a67ea"
+  }) {
+    id
+    value
+    classId
+    studentId
+  }
+}
+````
