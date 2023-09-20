@@ -21,59 +21,25 @@ allow {
 }
 
 allow {
-    input.method == "PUT"
     input.path == ["info"]
     is_admin
 }
 
 allow {
-    input.method == "POST"
-    input.path == ["info"]
-    is_admin
-}
-
-allow {
-    input.method == "DELETE"
-    input.path == ["info"]
-    is_admin
-}
-
-allow {
-    input.method == "GET"
     input.path[0] == "api"
     is_admin
 }
-
-allow {
-    input.method == "GET"
-    input.path == ["api", "students"]
-    is_admin
-}
-
-allow {
-    input.method == "PUT"
-    input.path == ["api", "students"]
-    is_admin
-}
-
-allow {
-    input.method == "DELETE"
-    input.path == ["api", "students"]
-    is_admin
-}
-
-allow {
-    input.method == "POST"
-    input.path == ["api", "students"]
-    is_admin
-}
-
+# user is allowed if he has a user role
 is_user {
-  some i
+        # for some `i`...
+        some i
   input.roles[i].authority == "ROLE_USER"
 }
 
+# user is allowed if he has a admin role
 is_admin {
-  some i
+        # for some `i`...
+        some i
   input.roles[i].authority == "ROLE_ADMIN"
 }
+
