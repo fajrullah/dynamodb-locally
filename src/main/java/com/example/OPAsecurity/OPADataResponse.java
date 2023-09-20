@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.OPAsecurity;
 public class OPADataResponse {
 
     private boolean result;

@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.OPAsecurity;
 import java.util.Map;
 
 public class OPADataRequest {
