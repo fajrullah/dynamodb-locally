@@ -24,18 +24,21 @@ public class StudentControllerTest {
     private MockMvc mockMvc;
 
     @Test
+    @WithMockUser(username = "admin", roles = "ADMIN" )
     public void shouldReturnDataOfStudents() throws Exception {
         mockMvc.perform(get("/api/students"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
     @Test
+    @WithMockUser(username = "admin", roles = "ADMIN" )
     public void shouldReturnDataOfStudent() throws Exception {
         mockMvc.perform(get("/api/students/1"))
                 .andExpect(status().isOk());
     }
 
     @Test
+    @WithMockUser(username = "admin", roles = "ADMIN" )
     public void shouldReturnStatusCreated() throws Exception {
         mockMvc.perform( post("/api/students")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -49,6 +52,7 @@ public class StudentControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", roles = "ADMIN" )
     public void shouldReturnBadRequestWhenCreate() throws Exception {
         mockMvc.perform( post("/api/students")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -58,6 +62,7 @@ public class StudentControllerTest {
                 .andExpect(status().isBadRequest());
     }
     @Test
+    @WithMockUser(username = "admin", roles = "ADMIN" )
     public void shouldReturnStatusSuccessWhenDelete() throws Exception{
         mockMvc.perform(delete("/api/students/12234"))
                 .andExpect(status().isOk())
@@ -65,6 +70,7 @@ public class StudentControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", roles = "ADMIN" )
     public void shouldReturnStatusSuccessWhenUpdate() throws Exception{
         mockMvc.perform( put("/api/students")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -79,6 +85,7 @@ public class StudentControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", roles = "ADMIN" )
     public void shouldReturnStatusFailWhenUpdate() throws Exception{
         mockMvc.perform( put("/api/students")
                         .contentType(MediaType.APPLICATION_JSON)
