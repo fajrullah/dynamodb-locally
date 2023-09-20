@@ -1,12 +1,15 @@
 package com.example.cucumberglue;
 
 import com.example.entity.Student;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.spring.CucumberContextConfiguration;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.*;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,10 +27,34 @@ public class StudentControllerSteps {
 
     private HttpHeaders headers;
 
+    private HttpEntity<String> requestEntity;
+
+    private HttpHeaders requestHeaders;
+
+    @Given("^a user with username \"([^\"]*)\" and password \"([^\"]*)\"$")
+    public void userNameAndPasswordSet(String username, String password) {
+        HttpHeaders headers = new HttpHeaders();
+        String credentials = username + ":" + password;
+        byte[] credentialsBytes = credentials.getBytes();
+        String credentialsBase64 = Base64Utils.encodeToString(credentialsBytes);
+        headers.add("Authorization", "Basic " + credentialsBase64);
+        this.requestEntity = new HttpEntity<>(headers);
+    }
+
+    @Given("^update with username \"([^\"]*)\" and password \"([^\"]*)\"$")
+    public void userNameAndPasswordUpdate(String username, String password) {
+        HttpHeaders headers = new HttpHeaders();
+        String credentials = username + ":" + password;
+        byte[] credentialsBytes = credentials.getBytes();
+        String credentialsBase64 = Base64Utils.encodeToString(credentialsBytes);
+        headers.add("Authorization", "Basic " + credentialsBase64);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        this.requestHeaders = headers;
+    }
     @When("I call endpoint {string}")
     public void whenClientCalls(String url) {
         try {
-            response = new RestTemplate().exchange("http://localhost:" + port + url, HttpMethod.GET, null,
+            response = new RestTemplate().exchange("http://localhost:" + port + url, HttpMethod.GET, this.requestEntity,
                     String.class);
         } catch (HttpClientErrorException httpClientErrorException) {
             httpClientErrorException.printStackTrace();
@@ -37,9 +64,7 @@ public class StudentControllerSteps {
     @When("I call update endpoint {string} JSON body:")
     public void whenClientCallsUpdate(String url, String jsonBody) {
         try {
-            headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            HttpEntity<String> requestEntity = new HttpEntity<>(jsonBody, headers);
+            HttpEntity<String> requestEntity = new HttpEntity<>(jsonBody, this.requestHeaders);
             response = new RestTemplate().exchange("http://localhost:" + port + url, HttpMethod.PUT, requestEntity,
                     String.class);
         } catch (HttpClientErrorException httpClientErrorException) {
@@ -50,9 +75,7 @@ public class StudentControllerSteps {
     @When("I call endpoint to save {string} JSON body:")
     public void whenClientCallsSaved(String url, String jsonBody) {
         try {
-            headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            HttpEntity<String> requestEntity = new HttpEntity<>(jsonBody, headers);
+            HttpEntity<String> requestEntity = new HttpEntity<>(jsonBody, this.requestHeaders);
             response = new RestTemplate().exchange("http://localhost:" + port + url, HttpMethod.POST, requestEntity,
                     String.class);
         } catch (HttpClientErrorException httpClientErrorException) {
@@ -60,10 +83,16 @@ public class StudentControllerSteps {
         }
     }
 
-    @When("I call delete endpoint {string}")
-    public void whenClientCallDelete(String url) {
+    @When("I call delete endpoint {string} with username {string} and password {string}")
+    public void whenClientCallDelete(String url, String username, String password) {
         try {
-            response = new RestTemplate().exchange("http://localhost:" + port + url, HttpMethod.DELETE, null,
+            HttpHeaders headers = new HttpHeaders();
+            String credentials = username + ":" + password;
+            byte[] credentialsBytes = credentials.getBytes();
+            String credentialsBase64 = Base64Utils.encodeToString(credentialsBytes);
+            headers.add("Authorization", "Basic " + credentialsBase64);
+            HttpEntity requestEntity = new HttpEntity<>(headers);
+            response = new RestTemplate().exchange("http://localhost:" + port + url, HttpMethod.DELETE, requestEntity,
                     String.class);
         } catch (HttpClientErrorException httpClientErrorException) {
             httpClientErrorException.printStackTrace();

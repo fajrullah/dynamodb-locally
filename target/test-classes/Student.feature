@@ -4,6 +4,7 @@ Feature: Testing Student CRUD Management
     Given there is a student with ID "1" in the repository
 
   Scenario: Save Student
+    Given update with username "admin" and password "admin"
     When I call endpoint to save "/api/students" JSON body:
     """
       {
@@ -18,6 +19,7 @@ Feature: Testing Student CRUD Management
     And response media type is application JSON
 
   Scenario: Find Student by ID
+    Given a user with username "admin" and password "admin"
     When find the student with ID "1"
     Then the student with ID "1" is found
     When I call endpoint "/api/students/1"
@@ -25,7 +27,7 @@ Feature: Testing Student CRUD Management
     And response media type is not set
 
   Scenario: Delete Student by ID
-    When I call delete endpoint "/api/students/1"
+    When I call delete endpoint "/api/students/1" with username "admin" and password "admin"
     Then response status code is 200
     When I delete the student with ID "1"
     Then the student with ID "1" is deleted
@@ -33,12 +35,14 @@ Feature: Testing Student CRUD Management
 
 
   Scenario: Update Student
+    Given update with username "admin" and password "admin"
     When I call update endpoint "/api/students" JSON body:
      """
       {
         "id": "1",
         "name": "John",
-        "classNumber": "A100234"
+        "classNumber": "A100234",
+        "classIds": null
       }
      """
     Then response status code is 200
@@ -46,6 +50,7 @@ Feature: Testing Student CRUD Management
     Then the student with ID "1" is updated with name "Allicia"
 
   Scenario: Find All Students
+    Given a user with username "admin" and password "admin"
     When it fetch all students
     Then the list of students should return students
     When I call endpoint "/api/students"
