@@ -1,12 +1,27 @@
 package com.example.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/info")
 public class PublicController {
-    @GetMapping("/info")
+    @GetMapping()
     public String getInfo() {
-        return "Welcome to public";
+        return "Allowed METHOD: GET";
+    }
+
+    @PostMapping()
+    public String postInfo() {
+        return "Allowed METHOD: POST";
+    }
+
+    @PutMapping()
+    public String putInfo() {
+        return "Allowed METHOD: PUT";
+    }
+
+    @DeleteMapping()
+    public String deleteInfo() {
+        return "Allowed METHOD: DELETE";
     }
 }

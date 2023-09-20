@@ -11,6 +11,10 @@
 opa run --log-level=debug -s opaweb.rego
 curl -kv http://localhost:8080/info --header 'Authorization: Basic am9objEyMzpwYXNzd29yZA=='
 curl user:user@localhost:8080/info
+
+curl -X PUT -u admin:admin http://localhost:8080/info
+curl -X POST -u user:user http://localhost:8080/info
+curl -X DELETE -u user:user http://localhost:8080/info
 ````
 
 ## POLICY REGO
