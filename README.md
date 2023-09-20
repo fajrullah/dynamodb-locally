@@ -5,6 +5,79 @@
 - CUCUMBER
 - OPA (Open Policy Agent)
 
+
+## Curl
+````
+opa run --log-level=debug -s opaweb.rego
+curl -kv http://localhost:8080/info --header 'Authorization: Basic am9objEyMzpwYXNzd29yZA=='
+curl user:user@localhost:8080/info
+
+curl -X PUT -u admin:admin http://localhost:8080/info
+curl -X POST -u user:user http://localhost:8080/info
+curl -X DELETE -u user:user http://localhost:8080/info
+````
+
+## POLICY REGO
+````
+package opaweb.authz
+
+default allow = false
+
+allow {
+  input.method == "GET"
+  input.path = ["public"]
+  is_user
+}
+
+allow {
+    input.method == "GET"
+    input.path == ["api", "students"]
+    is_user
+}
+
+allow {
+  input.method == "GET"
+  input.path == ["info"]
+  is_admin
+}
+
+allow {
+    input.path == ["info"]
+    is_admin
+}
+
+allow {
+  input.path[0] == "graphql"
+  is_admin
+}
+
+allow {
+   input.path[0] == "graphiql"
+   is_admin
+}
+
+allow {
+    input.path[0] == "api"
+    is_admin
+}
+
+# user is allowed if he has a user role
+is_user {
+	# for some `i`...
+	some i
+  input.roles[i].authority == "ROLE_USER"
+}
+
+# user is allowed if he has a admin role
+is_admin {
+	# for some `i`...
+	some i
+  input.roles[i].authority == "ROLE_ADMIN"
+}
+
+````
+
+## Graphql
 ````
 query studentsQuery{
   students {

@@ -1,6 +1,6 @@
-com/example/DemoApplication.class
 com/example/repository/StudentRepository.class
 com/example/entity/Student.class
 com/example/controller/StudentController.class
 com/example/service/StudentService.class
+com/example/DemoApplication.class
 com/example/config/DynamoDBConfig.class
